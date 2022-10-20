@@ -49,3 +49,20 @@ func (al *ArrayList[T]) Empty() bool {
 func (al *ArrayList[T]) Size() int {
 	return len(al.data)
 }
+
+func (al *ArrayList[T]) Map(mapFunc func(item T) T) *ArrayList[T] {
+	for i := range al.data {
+		al.data[i] = mapFunc(al.data[i])
+	}
+
+	return al
+}
+
+func (al *ArrayList[T]) Reduce(initial T, reducer func(prev, current T) T) T {
+	result := initial
+	for _, t := range al.data {
+		result = reducer(result, t)
+	}
+
+	return result
+}
