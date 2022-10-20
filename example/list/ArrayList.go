@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"structures/list"
+
+	"github.com/mehditeymorian/structures/list"
 )
 
 func main() {

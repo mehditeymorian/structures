@@ -1,4 +1,4 @@
-module structures
+module github.com/mehditeymorian/structures
 
 go 1.19
 
