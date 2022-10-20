@@ -20,4 +20,12 @@ func main() {
 	al.Remove(1)
 	fmt.Println(al.GetAll())
 
+	doubledSum := []interface{}{al.Map(func(item int) int {
+		return item * item
+	}).Reduce(0, func(prev, current int) int {
+		return prev + current
+	})}
+
+	fmt.Println(doubledSum)
+
 }
