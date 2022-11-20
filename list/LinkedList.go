@@ -5,7 +5,7 @@ import "context"
 type LinkedList[T comparable] struct {
 	firstNode *node[T]
 	lastNode  *node[T]
-	length    uint
+	length    int
 }
 
 type node[T comparable] struct {
@@ -44,7 +44,32 @@ func (ll *LinkedList[T]) Add(items ...T) {
 }
 
 func (ll *LinkedList[T]) Remove(position int) bool {
-	context.TODO()
+	if position >= ll.length {
+		return false
+	}
+
+	if position == 0 {
+		if ll.length == 1 {
+			ll.firstNode = nil
+			ll.lastNode = nil
+		} else {
+			ll.firstNode = ll.firstNode.next
+		}
+	}
+
+	p := 0
+	node := ll.firstNode
+	for p != position-1 {
+		p++
+		node = node.next
+	}
+	node.next = node.next.next
+	if position+1 == ll.length {
+		ll.lastNode = node.next
+	}
+
+	ll.length--
+
 	return true
 }
 
@@ -75,7 +100,7 @@ func (ll *LinkedList[T]) Empty() bool {
 	return ll.length == 0
 }
 
-func (ll *LinkedList[T]) Size() uint {
+func (ll *LinkedList[T]) Size() int {
 	return ll.length
 }
 
