@@ -55,6 +55,10 @@ func (ll *LinkedList[T]) Remove(position int) bool {
 		} else {
 			ll.firstNode = ll.firstNode.next
 		}
+
+		ll.length--
+
+		return true
 	}
 
 	p := 0
