@@ -11,10 +11,14 @@ type node[T comparable] struct {
 	next *node[T]
 }
 
-func NewLinkedList[E comparable]() *LinkedList[E] {
-	return &LinkedList[E]{
+func NewLinkedList[E comparable](items ...E) *LinkedList[E] {
+	l := &LinkedList[E]{
 		length: 0,
 	}
+
+	l.Add(items...)
+
+	return l
 }
 
 func (ll *LinkedList[T]) Add(items ...T) {
