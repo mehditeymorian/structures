@@ -35,3 +35,47 @@ func TestArrayList_Add(t *testing.T) {
 		})
 	}
 }
+
+func TestArrayList_Remove(t *testing.T) {
+
+	tests := []struct {
+		name        string
+		initial     []int
+		removeIndex int
+		result      []int
+	}{
+		{
+			name:        "remove first item",
+			initial:     []int{1, 2, 3},
+			removeIndex: 0,
+			result:      []int{2, 3},
+		},
+		{
+			name:        "remove last item",
+			initial:     []int{1, 2, 3},
+			removeIndex: 2,
+			result:      []int{1, 2},
+		},
+		{
+			name:        "remove middle item",
+			initial:     []int{1, 2, 3},
+			removeIndex: 1,
+			result:      []int{1, 3},
+		},
+		{
+			name:        "remove item out of bound",
+			initial:     []int{1, 2, 3},
+			removeIndex: 4,
+			result:      []int{1, 2, 3},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			al := NewArrayList[int](tt.initial...)
+
+			al.Remove(tt.removeIndex)
+
+			assert.Equal(t, al.data, tt.result)
+		})
+	}
+}
