@@ -1,7 +1,5 @@
 package list
 
-import "context"
-
 type LinkedList[T comparable] struct {
 	firstNode *node[T]
 	lastNode  *node[T]
@@ -119,13 +117,25 @@ func (ll *LinkedList[T]) Size() int {
 }
 
 func (ll *LinkedList[T]) Map(mapFunc func(item T) T) *LinkedList[T] {
-	context.TODO()
+	node := ll.firstNode
+
+	for node != nil {
+		node.data = mapFunc(node.data)
+		node = node.next
+	}
+
 	return ll
 }
 
 func (ll *LinkedList[T]) Reduce(initial T, reducer func(prev, current T) T) T {
 	result := initial
-	context.TODO()
+
+	node := ll.firstNode
+
+	for node != nil {
+		result = reducer(result, node.data)
+		node = node.next
+	}
 
 	return result
 }

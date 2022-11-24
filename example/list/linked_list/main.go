@@ -18,6 +18,12 @@ func main() {
 	fmt.Println(ll.GetAll())
 
 	item, ok := ll.Get(2)
-	fmt.Print(*item, ok)
+	fmt.Println(*item, ok)
+
+	mapFunc := func(item int) int { return item * item }
+	fmt.Println(ll.Map(mapFunc).GetAll())
+
+	reducer := func(prev, next int) int { return prev + next }
+	fmt.Println(ll.Reduce(0, reducer))
 
 }
