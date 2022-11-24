@@ -4,10 +4,14 @@ type ArrayList[T comparable] struct {
 	data []T
 }
 
-func NewArrayList[E comparable]() *ArrayList[E] {
-	return &ArrayList[E]{
+func NewArrayList[E comparable](items ...E) *ArrayList[E] {
+	a := &ArrayList[E]{
 		data: make([]E, 0),
 	}
+
+	a.Add(items...)
+
+	return a
 }
 
 func (al *ArrayList[T]) Add(items ...T) {
