@@ -16,4 +16,8 @@ func main() {
 	fmt.Println(ll.GetAll())
 	ll.Remove(2)
 	fmt.Println(ll.GetAll())
+
+	item, ok := ll.Get(2)
+	fmt.Print(*item, ok)
+
 }

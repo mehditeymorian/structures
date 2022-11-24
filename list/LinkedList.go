@@ -78,8 +78,18 @@ func (ll *LinkedList[T]) Remove(position int) bool {
 }
 
 func (ll *LinkedList[T]) Get(position int) (*T, bool) {
-	context.TODO()
-	return nil, true
+	if position >= ll.length {
+		return nil, false
+	}
+
+	p := 0
+	node := ll.firstNode
+	for p < position {
+		node = node.next
+		p++
+	}
+
+	return &node.data, true
 }
 
 func (ll *LinkedList[T]) GetAll() []T {
